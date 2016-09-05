@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from './models/Contact';
+import { CONTACT_DATA } from './data/contact-data';
 
 @Component({
   selector: 'trm-contacts-app',
@@ -9,19 +10,5 @@ import { Contact } from './models/Contact';
 export class ContactsAppComponent {
   title = 'Angular 2 Master Class setup works!';
 
-  contact: Contact = {
-    id: 7,
-    name: 'Diana Ellis',
-    email: '',
-    phone: '',
-    birthday: '',
-    website: '',
-    image: '/assets/images/7.jpg',
-    address: {
-      street: '6554 park lane',
-      zip: '43378',
-      city: 'Rush',
-      country: 'United States'
-    }
-  }
+  contacts: Contact[] = CONTACT_DATA;
 }
