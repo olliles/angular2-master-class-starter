@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
 
 import { ContactsService } from '../services/contacts.service';
 import { Contact } from '../models/contact';
@@ -31,9 +30,13 @@ export class ContactsEditorComponent implements OnInit {
     this._router.navigate(['/contact', this.contact.id]);
   }
 
+  goToDetails() {
+    this._router.navigate(['/contact', this.contact.id]);
+  }
+
   save() {
     this._contactsService.updateContact(this.contact.id, this.contact)
-      .subscribe( response => this._router.navigate(['/contact', this.contact.id]) );
+      .subscribe( response => this.goToDetails() );
   }
 
 }
