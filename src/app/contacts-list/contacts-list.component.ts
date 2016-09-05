@@ -10,14 +10,15 @@ import { Contact } from '../models/contact';
   styleUrls: ['contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-  contacts: Contact[];
+  contacts: Array<Contact>;
 
   constructor(
     private _contactService: ContactsService
   ) {}
 
   ngOnInit() {
-    this.contacts = this._contactService.getContacts();
+    this._contactService.getContacts()
+      .subscribe(contacts => this.contacts = contacts);
   }
 
 }

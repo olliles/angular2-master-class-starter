@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 import { ContactsAppRoutes } from './app.routes'
 
@@ -20,7 +22,8 @@ import { ContactsDetailsComponent } from './contacts-details/contacts-details.co
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ContactsAppRoutes)
+    RouterModule.forRoot(ContactsAppRoutes),
+    HttpModule
   ],
   providers: [
     {
