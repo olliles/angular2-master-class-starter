@@ -29,4 +29,10 @@ export class ContactsService {
       .map(res => res.json())
       .map((data) => data.item);
   }
+
+  updateContact(id: number, contact: Contact) {
+    let url = `${this._apiUrl}/contacts/${id}`;
+
+    return this._http.put(url, contact);
+  }
 }

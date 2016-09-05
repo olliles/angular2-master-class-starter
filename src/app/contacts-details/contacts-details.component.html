@@ -43,7 +43,16 @@
         </fieldset>
       </div>
       <div class="card-action">
-        <a class="btn" [routerLink]="'/'">Go Back</a>
+        <a class="btn"
+          [routerLink]="'/'">
+          Go Back
+        </a>
+        <a class="btn"
+          *ngIf="contact"
+          [routerLink]="['/contact', contact.id, 'edit']">
+          Edit
+        </a>
+        <!-- Tai [routerLink]=[edit] -->
       </div>
     </div>
   </div>
