@@ -11,4 +11,10 @@ export class ContactsService {
   getContacts() {
     return CONTACT_DATA;
   }
+
+  getContact(id:Number) {
+    let contact: any;
+
+    return CONTACT_DATA.find(contact => contact.id == id);;
+  }
 }
