@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { Title } from '@angular/platform-browser';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -44,6 +45,9 @@ import { ContactsDetailsViewComponent } from './contacts-details-view/contacts-d
     },
     {
       provide: EventBusService, useClass: EventBusService
+    },
+    {
+      provide: Title, useClass: Title
     }
   ],
   bootstrap: [

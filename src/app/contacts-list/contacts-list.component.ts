@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser'
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,7 +20,8 @@ export class ContactsListComponent implements OnInit {
 
   constructor(
     private _contactService: ContactsService,
-    private _eventBusService: EventBusService
+    private _eventBusService: EventBusService,
+    private _titleService: Title
   ) {}
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class ContactsListComponent implements OnInit {
       .merge(this._contactService.getContacts());
 
     this._eventBusService.emit('appTitleChange', 'Contact list');
+    this._titleService.setTitle('Contacts, changes');
   }
 
   /*private search(term: string) {

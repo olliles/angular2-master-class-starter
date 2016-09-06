@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Title } from '@angular/platform-browser';
 import { ContactsService } from '../services/contacts.service';
 import { EventBusService } from '../services/event-bus.service';
 import { Contact } from '../models/contact';
@@ -17,7 +17,8 @@ export class ContactsDetailsViewComponent implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _contactsService: ContactsService,
-    private _eventBusService: EventBusService
+    private _eventBusService: EventBusService,
+    private _titleService: Title
   ) {
 
   }
@@ -28,6 +29,7 @@ export class ContactsDetailsViewComponent implements OnInit {
       .subscribe( contact => {
         this.contact = contact;
         this._eventBusService.emit('appTitleChange', this.contact.name);
+        this._titleService.setTitle(this.contact.name);
       });
   }
 
