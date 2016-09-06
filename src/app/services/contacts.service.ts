@@ -21,7 +21,6 @@ export class ContactsService {
   }
 
   getContact(id: number | string) {
-
     return this._http.get(`${this._apiUrl}/contacts/${id}`)
       .map(res => res.json())
       .map((data) => data.item);
@@ -44,8 +43,7 @@ export class ContactsService {
   search(terms: any) {
     return terms.debounceTime(400)
          .distinctUntilChanged() // Observable<string>
-         .switchMap(term => this.rawSearch(term)) //Observable<Contact[]>
-         .merge(this.getContacts());
+         .switchMap(term => this.rawSearch(term)); //Observable<Contact[]>
   }
 
 }

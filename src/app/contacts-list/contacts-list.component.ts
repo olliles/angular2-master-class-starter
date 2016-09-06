@@ -21,7 +21,9 @@ export class ContactsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.contacts = this._contactService.search(this.terms$);
+    this.contacts = this._contactService
+      .search(this.terms$)
+      .merge(this._contactService.getContacts());
   }
 
   /*private search(term: string) {
