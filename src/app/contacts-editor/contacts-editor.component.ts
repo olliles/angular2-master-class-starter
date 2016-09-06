@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ContactsService } from '../services/contacts.service';
+import { EventBusService } from '../services/event-bus.service';
 import { Contact } from '../models/contact';
 
 @Component({
@@ -15,7 +16,8 @@ export class ContactsEditorComponent implements OnInit {
   constructor(
       private _route: ActivatedRoute,
       private _router: Router,
-      private _contactsService: ContactsService
+      private _contactsService: ContactsService,
+      private _eventBusService: EventBusService
   ) {
 
   }
@@ -23,7 +25,10 @@ export class ContactsEditorComponent implements OnInit {
   ngOnInit() {
     let id = this._route.snapshot.params['id'];
     this._contactsService.getContact(id)
-      .subscribe(contact => this.contact = contact);
+      .subscribe(contact => {
+        this.contact = contact;
+        this._eventBusService.emit('appTitleChange', 'Editing: ' + this.contact.name);
+      });
   }
 
   cancel() {

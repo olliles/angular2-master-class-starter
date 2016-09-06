@@ -3,8 +3,9 @@ import { OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-import { ContactsService } from '../services/contacts.service';
 import { Contact } from '../models/contact';
+import { ContactsService } from '../services/contacts.service';
+import { EventBusService } from '../services/event-bus.service';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -17,13 +18,16 @@ export class ContactsListComponent implements OnInit {
   private terms$ = new Subject<string>();
 
   constructor(
-    private _contactService: ContactsService
+    private _contactService: ContactsService,
+    private _eventBusService: EventBusService
   ) {}
 
   ngOnInit() {
     this.contacts = this._contactService
       .search(this.terms$)
       .merge(this._contactService.getContacts());
+
+    this._eventBusService.emit('appTitleChange', 'Contact list');
   }
 
   /*private search(term: string) {

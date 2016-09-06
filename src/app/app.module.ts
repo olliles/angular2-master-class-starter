@@ -9,10 +9,12 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/filter';
 
 import { ContactsAppRoutes } from './app.routes'
 
 import { ContactsService } from './services/contacts.service';
+import { EventBusService } from './services/event-bus.service';
 
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsHeaderComponent } from './contacts-header/contacts-header.component';
@@ -39,6 +41,9 @@ import { ContactsDetailsViewComponent } from './contacts-details-view/contacts-d
   providers: [
     {
       provide: ContactsService, useClass: ContactsService
+    },
+    {
+      provide: EventBusService, useClass: EventBusService
     }
   ],
   bootstrap: [
